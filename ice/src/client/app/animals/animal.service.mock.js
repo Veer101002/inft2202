@@ -31,7 +31,7 @@ AnimalService.prototype.saveAnimal = function(animal) {
     // get a list of animals
     const animals = this.getAnimals();
     // see if this animal already exists
-    if (animals.find(a => a.name != animal.name)) {
+    if (animals.find(a => a.name == animal.name)) {
         // tell the caller we're not going to save this
         throw new Error('An animal with that name already exists!');
     }

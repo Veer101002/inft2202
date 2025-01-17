@@ -43,14 +43,14 @@ function drawAnimalTable(animals)
         // create a delete button
         const eleBtnDelete = document.createElement('button');
         eleBtnDelete.classList.add('btn', 'btn-danger', 'mx-1');
-        eleBtnDelete.innerHTML = `<i class="fa fa-trash"></i>`;
+        eleBtnDelete.innerHTML = <i class="fa fa-trash"></i>;
         eleBtnDelete.addEventListener('click', onDeleteButtonClick(animal));
         // add the delete button to the button cell
         eleBtnCell.append(eleBtnDelete);
         // create an edit button
         const eleBtnEdit = document.createElement('a');
         eleBtnEdit.classList.add('btn', 'btn-primary', 'mx-1');
-        eleBtnEdit.innerHTML = `<i class="fa fa-user"></i>`;
+        eleBtnEdit.innerHTML = <i class="fa fa-user"></i>;
         eleBtnEdit.href = `./add.html?name=${animal.name}`
         // add the edit button to the button cell
         eleBtnCell.append(eleBtnEdit);
