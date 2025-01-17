@@ -1,11 +1,9 @@
 /*
-    Name: Virendrasinh Chauhan
-    filename: animal.service.js
-    Course: INFT 2202
-    Date: January 10, 2025
-    Description: This is animal.service.js page.
+Name: Virendrasinh Chauhan
+Date: January 17, 2025
+File: animal.service.mock.js
+Description: this is animal.service.mock.js file.
 */
-
 /*
  *  Service constructor
  */

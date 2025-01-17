@@ -1,11 +1,9 @@
 <!--
-    Name: Virendrasinh Chauhan
-    filename: add.html
-    Course: INFT 2202
-    Date: January 10, 2025
-    Description: This is add page.
+Name: Virendrasinh Chauhan
+Date: January 17, 2025
+File: create.html
+Description: This is create.html file.
 -->
-
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -14,14 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script defer src="./app/animals.service.mock.js"></script>
-    <script defer src="./app/add.js"></script>
+    <script defer src="./app/animal.service.mock.js"></script>
+    <script defer src="./app/create.js"></script>
   </head>
   <body class="d-flex flex-column h-100">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="add.html" class="nav-link active" aria-current="page">Add Animal</a></li>
+        <li class="nav-item"><a href="create.html" class="nav-link active" aria-current="page">Add Animal</a></li>
         <li class="nav-item"><a href="list.html" class="nav-link">Show Animals</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
@@ -38,31 +36,26 @@
                 <input type="text" class="form-control" id="name" name="name">
                 <p class="text-danger d-none">currently hidden</p>
               </div>
-
               <div class="mb-3">
-                <label for="name" class="form-label">Animal Breed</label>
+                <label for="breed" class="form-label">Animal Breed</label>
                 <input type="text" class="form-control" id="breed" name="breed">
-                <p class="text-danger d-none">currently hidden</p>
-              </div>
-
+                <p class="text-danger d-none"></p>
+              </div>              
               <div class="mb-3">
-                <label for="name" class="form-label">Number of Legs</label>
+                <label for="legs" class="form-label">Number of Legs</label>
                 <input type="text" class="form-control" id="legs" name="legs">
-                <p class="text-danger d-none">currently hidden</p>
+                <p class="text-danger d-none"></p>
               </div>
-
               <div class="mb-3">
-                <label for="name" class="form-label">Number of Eyes</label>
+                <label for="eyes" class="form-label">Number of Eyes</label>
                 <input type="text" class="form-control" id="eyes" name="eyes">
-                <p class="text-danger d-none">currently hidden</p>
+                <p class="text-danger d-none"></p>
               </div>
-
-               <div class="mb-3">
-                <label for="name" class="form-label">Sound this animal makes</label>
+              <div class="mb-3">
+                <label for="sound" class="form-label">Sound this animal makes</label>
                 <input type="text" class="form-control" id="sound" name="sound">
-                <p class="text-danger d-none">currently hidden</p>
-              </div>
-  
+                <p class="text-danger d-none"></p>
+              </div>  
               <div>
                 <button type="submit" class="btn btn-primary">Save Animal</button>
               </div>
@@ -76,7 +69,7 @@
           <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
             <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
           </a>
-          <span class="mb-3 mb-md-0 text-body-secondary">© <span id="copyrightYear"></span> Virendrasinh Chauhan, Inc</span>
+          <span class="mb-3 mb-md-0 text-body-secondary">© <span id="copyrightYear"></span> Adam Kunz, Inc</span>
         </div>
     
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">

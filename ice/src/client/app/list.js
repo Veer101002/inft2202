@@ -1,12 +1,9 @@
 /*
-    Name: Virendrasinh Chauhan
-    filename: list.js
-    Course: INFT 2202
-    Date: January 17, 2025
-    Description: This is list.js page.
+Name: Virendrasinh Chauhan
+Date: January 17, 2025
+File: list.js
+Description: this is list.js file.
 */
-
-
 console.log('we are on the list page');
 
 /* do table stuff */
@@ -43,14 +40,14 @@ function drawAnimalTable(animals)
         // create a delete button
         const eleBtnDelete = document.createElement('button');
         eleBtnDelete.classList.add('btn', 'btn-danger', 'mx-1');
-        eleBtnDelete.innerHTML = <i class="fa fa-trash"></i>;
+        eleBtnDelete.innerHTML = `<i class="fa fa-trash"></i>`;
         eleBtnDelete.addEventListener('click', onDeleteButtonClick(animal));
         // add the delete button to the button cell
         eleBtnCell.append(eleBtnDelete);
         // create an edit button
         const eleBtnEdit = document.createElement('a');
         eleBtnEdit.classList.add('btn', 'btn-primary', 'mx-1');
-        eleBtnEdit.innerHTML = <i class="fa fa-user"></i>;
+        eleBtnEdit.innerHTML = `<i class="fa fa-user"></i>`;
         eleBtnEdit.href = `./add.html?name=${animal.name}`
         // add the edit button to the button cell
         eleBtnCell.append(eleBtnEdit);
