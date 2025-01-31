@@ -45,13 +45,16 @@ function insertMoviesIntoTable(eleTable, moviesList) {
     let sortedMovies = moviesList.filter(m => m.genre !== "Drama").sort((a, b) => b.rating - a.rating);
     let tbody = eleTable.querySelector("tbody");
     tbody.innerHTML = "";
+     // Create a formatter for the desired date format
+     const dateFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
     // for each movie
     sortedMovies.forEach(movie => {
          // insert a row
         let row = tbody.insertRow();
         row.insertCell(0).textContent = movie.title;
         row.insertCell(1).textContent = movie.genre;
-        row.insertCell(2).textContent = new Date(movie.release_date * 1000).toDateString();
+        row.insertCell(2).textContent = formatDateTime(new Date(movie.release_date * 1000));
         row.insertCell(3).textContent = movie.director;
         row.insertCell(4).textContent = movie.rating;
         // insert a cell for each attribute of a movie
@@ -82,4 +85,19 @@ function insertMoviesIntoTable(eleTable, moviesList) {
         // if this movie is rated higher than eight, make this row green
         else if (movie.rating > 8) row.classList.add("table-success");
     });
+}
+//To set the format of fate and time
+function formatDateTime(date) {
+    let mm = date.getMonth() + 1; 
+    let dd = date.getDate(); 
+    let yyyy = date.getFullYear(); 
+
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12 || 12; 
+    minutes = minutes < 10 ? '0' + minutes : minutes; 
+
+    return `${mm}-${dd}-${yyyy} ${hours}:${minutes} ${ampm}`;
 }
