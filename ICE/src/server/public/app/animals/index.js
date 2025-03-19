@@ -25,8 +25,8 @@ async function animal(name) {
 
         const mb3Breed = document.createElement('div');
         mb3Breed.classList.add('mb-3');
-        editableInput = `<input type="text" class="form-control" id="breed" name="breed" `;
-        readonlyInput = `<input type="text" class="form-control" id="breed" name="breed" value="${animal!=null?animal.breed:""}">`;
+        editableInput = `<input type="text" class="form-control" id="breed" name="breed" value="${animal!=null?animal.breed:""}">`;
+        readonlyInput = `<input type="text" class="form-control" id="breed" name="breed">`;
         mb3Breed.innerHTML = '<label for="breed" class="form-label">Animal Breed</label>' +
             (animal!=null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';
@@ -35,7 +35,7 @@ async function animal(name) {
         const mb3Leg = document.createElement('div');
         mb3Leg.classList.add('mb-3');
         editableInput = `<input type="text" class="form-control" id="legs" name="legs">`;
-        readonlyInput = `<input type="text" class="form-control" id="legs" name="legs" value="${animal!=null?animal.legs:""}">`;
+        readonlyInput = `<input type="text" class="form-control" id="legs" name="legs" value="${animal!=null?animal.legs:""}" readonly>`;
         mb3Leg.innerHTML = '<label for="legs" class="form-label">Number of Legs</label>' +
             (animal!=null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';
@@ -44,7 +44,7 @@ async function animal(name) {
         const mb3Eye = document.createElement('div');
         mb3Eye.classList.add('mb-3');
         editableInput = `<input type="text" class="form-control" id="eyes" name="eyes">`;
-        readonlyInput = `<input type="text" class="form-control" id="eyes" name="eyes" value="${animal!=null?animal.eyes:""}">`;
+        readonlyInput = `<input type="text" class="form-control" id="eyes" name="eyes" value="${animal!=null?animal.eyes:""}" readonly>`;
         mb3Eye.innerHTML = '<label for="eyes" class="form-label">Number of Eyes</label>' +
             (animal!=null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';
@@ -52,8 +52,8 @@ async function animal(name) {
         
         const mb3Sound = document.createElement('div');
         mb3Sound.classList.add('mb-3');
-        editableInput = `<input type="text" class="form-control" id="sound" name="sound" >`;
-        readonlyInput = `<input type="text" class="form-control" id="sound" name="sound" value="${animal!=null?animal.sound:""}">`;
+        editableInput = `<input type="text" class="form-control" id="sound" name="sound" value="${animal!=null?animal.sound:""}">`;
+        readonlyInput = `<input type="text" class="form-control" id="sound" name="sound">`;
         mb3Sound.innerHTML = '<label for="sound" class="form-label">Sound this animal makes</label>' +
             (animal!=null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';

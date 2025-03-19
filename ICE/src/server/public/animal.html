@@ -1,6 +1,7 @@
 <!--
-Name: Virendrasinh Chauhan
---> 
+Name: virendrasinh chauhan
+animal.html
+-->
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -12,12 +13,12 @@ Name: Virendrasinh Chauhan
     <script defer type="module">
       import animalBuilder from  "./app/animals/index.js";
 
-      const params = new URL(document.location).searchParams;
+      let params = new URL(document.location).searchParams;
       const name = params.get("name");
       const animal = await animalBuilder(name);
       
       document.querySelector('main div h1').innerHTML = animal.description;
-      const container = document.querySelector('main .container');
+      let container = document.querySelector('main .container');
       container.append(animal.element);      
     </script>
   </head>
@@ -43,7 +44,7 @@ Name: Virendrasinh Chauhan
           <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
             <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
           </a>
-          <span class="mb-3 mb-md-0 text-body-secondary">© <span id="copyrightYear"></span> Virendrasinh Chauhan, Inc</span>
+          <span class="mb-3 mb-md-0 text-body-secondary">© <span id="copyrightYear"></span>Virendrasinh Chauhan, Inc</span>
         </div>
     
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
