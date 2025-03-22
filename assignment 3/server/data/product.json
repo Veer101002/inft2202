@@ -1,0 +1,177 @@
+[
+    {
+        "name": "Smart Coffee Maker",
+        "description": "Wi-Fi enabled programmable coffee machine",
+        "price": 89.99,
+        "category": "Kitchen",
+        "stock": 120
+    },
+    {
+        "name": "Solar Power Bank",
+        "description": "20000mAh with solar charging capability",
+        "price": 64.99,
+        "category": "Outdoor",
+        "stock": 85
+    },
+    {
+        "name": "Memory Foam Pillow",
+        "description": "Orthopedic cervical support pillow",
+        "price": 39.99,
+        "category": "Home",
+        "stock": 200
+    },
+    {
+        "name": "Electric Skateboard",
+        "description": "25mph max speed, 15-mile range",
+        "price": 599.99,
+        "category": "Sports",
+        "stock": 25
+    },
+    {
+        "name": "Air Fryer Oven",
+        "description": "8-in-1 digital convection oven",
+        "price": 129.99,
+        "category": "Kitchen",
+        "stock": 75
+    },
+    {
+        "name": "Camping Tent",
+        "description": "4-person waterproof instant setup",
+        "price": 149.99,
+        "category": "Outdoor",
+        "stock": 40
+    },
+    {
+        "name": "Wireless Security Camera",
+        "description": "360° pan/tilt with night vision",
+        "price": 79.99,
+        "category": "Home Security",
+        "stock": 60
+    },
+    {
+        "name": "Graphic Drawing Monitor",
+        "description": "10-inch pen display tablet",
+        "price": 299.99,
+        "category": "Electronics",
+        "stock": 30
+    },
+    {
+        "name": "Essential Oil Diffuser",
+        "description": "Ultrasonic aromatherapy humidifier",
+        "price": 29.99,
+        "category": "Wellness",
+        "stock": 150
+    },
+    {
+        "name": "Folding Electric Bike",
+        "description": "20-inch compact city commuter",
+        "price": 899.99,
+        "category": "Transportation",
+        "stock": 15
+    },
+    {
+        "name": "Ceramic Cookware Set",
+        "description": "10-piece non-toxic non-stick set",
+        "price": 199.99,
+        "category": "Kitchen",
+        "stock": 45
+    },
+    {
+        "name": "Noise Masking Sleepbuds",
+        "description": "Wireless sleep-enhancing earbuds",
+        "price": 149.99,
+        "category": "Wellness",
+        "stock": 65
+    },
+    {
+        "name": "Portable Projector",
+        "description": "1080p HD with built-in speakers",
+        "price": 179.99,
+        "category": "Electronics",
+        "stock": 50
+    },
+    {
+        "name": "Hiking Backpack",
+        "description": "50L waterproof with hydration sleeve",
+        "price": 109.99,
+        "category": "Outdoor",
+        "stock": 70
+    },
+    {
+        "name": "Smart Jump Rope",
+        "description": "Bluetooth-connected fitness tracker",
+        "price": 49.99,
+        "category": "Fitness",
+        "stock": 90
+    },
+    {
+        "name": "Electric Massage Gun",
+        "description": "Deep tissue percussion therapy",
+        "price": 159.99,
+        "category": "Wellness",
+        "stock": 55
+    },
+    {
+        "name": "Indoor Herb Garden Kit",
+        "description": "Hydroponic growing system",
+        "price": 79.99,
+        "category": "Home",
+        "stock": 35
+    },
+    {
+        "name": "Wireless Barcode Scanner",
+        "description": "Bluetooth inventory management tool",
+        "price": 89.99,
+        "category": "Office",
+        "stock": 40
+    },
+    {
+        "name": "Electric Standing Desk",
+        "description": "Height-adjustable workstation",
+        "price": 349.99,
+        "category": "Office",
+        "stock": 20
+    },
+    {
+        "name": "Collapsible Silicone Folders",
+        "description": "Reusable food storage containers",
+        "price": 19.99,
+        "category": "Kitchen",
+        "stock": 200
+    },
+    {
+        "name": "UV Sanitizer Wand",
+        "description": "Portable germ-killing light",
+        "price": 39.99,
+        "category": "Health",
+        "stock": 120
+    },
+    {
+        "name": "Electric Scooter",
+        "description": "Foldable commuter scooter",
+        "price": 449.99,
+        "category": "Transportation",
+        "stock": 30
+    },
+    {
+        "name": "Yoga Mat",
+        "description": "Eco-friendly non-slip mat",
+        "price": 34.99,
+        "category": "Fitness",
+        "stock": 0
+    },
+    {
+        "name": "Resistance Bands Set",
+        "description": "5-level workout bands",
+        "price": 24.99,
+        "category": "Fitness",
+        "stock": 0
+    },
+    {
+        "name": "Electric Can Opener",
+        "description": "Automatic hands-free operation",
+        "price": 29.99,
+        "category": "Kitchen",
+        "stock": 0
+    }
+  ]

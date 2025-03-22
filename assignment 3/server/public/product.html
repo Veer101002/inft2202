@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Product Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer type="module">
+        import productBuilder from  "./app/products/index.js";
+
+        let params = new URL(document.location).searchParams;
+        const name = params.get("name");
+        const product = await productBuilder(name);
+        
+        document.querySelector('main div h1').innerHTML = product.description;
+        let container = document.querySelector('main .container');
+        container.append(product.element);      
+    </script>
+</head>
+<body class="d-flex flex-column h-100">
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="product.html" class="nav-link active">Product</a></li>
+            <li class="nav-item"><a href="list-products.html" class="nav-link">Show Products</a></li>
+        </ul>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1></h1>
+            <hr>  
+        </div>
+    </main>
+</body>
+</html>

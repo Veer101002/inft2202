@@ -4,8 +4,8 @@ Name: Virendrasinh Chauhan
 
 export default new AnimalService({
     host: 'https://inft2202-server.onrender.com/',
-    //host: 'https://localhost:3091',
-    user: '100806066'
+    //host: 'https://inft2202-',
+    user: '100951963'
 });
 
 function AnimalService({host, user}) {
