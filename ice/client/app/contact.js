@@ -1,7 +1,3 @@
-/*
-Name: Virendrasinh Chauhan
-*/
-
 // make sure storage is set up for messages
 if (!localStorage.getItem('messages')) {
     localStorage.setItem('messages', JSON.stringify([]));

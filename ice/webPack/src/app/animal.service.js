@@ -23,7 +23,7 @@ function AnimalService({ host, user }) {
  *
  */
 AnimalService.prototype.findAnimal = async function(name) {
-    const url = new URL(`/api/animals/${name}`, this.host);
+    const url = new URL(`/api/animals/${encodeURIComponent(name)}`, this.host);
     const req = new Request(url, {
         headers: this.headers,
         method: 'GET',

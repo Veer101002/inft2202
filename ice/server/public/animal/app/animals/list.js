@@ -1,42 +1,31 @@
-/*
-Name: Virendrasinh Chauhan
-*/
-
 import animalService from "../animal.service.js";
 
-function list (recordPage) 
-{
-    const container = document.createElement ('div');
+function list(recordPage) {
+    const container = document.createElement('div');
     container.classList.add('container');
-    const divWaiting = document.createElement ('div');
+    const divWaiting = document.createElement('div');
     divWaiting.classList.add('text-center');
-    divWaiting.innerHTML = '<i class = "fa fa-5x fa-spinner fa-spin"></i>';
+    divWaiting.innerHTML = '<i class="fa fa-5x fa-spinner fa-spin"></i>';
     container.append(divWaiting);
 
     const divMessage = document.createElement('div');
     divMessage.classList.add('alert', 'text-center', 'd-none');
     container.append(divMessage);
 
-
-    function drawPagination({page = 1, perPage = 5, pages = 10}) 
-    {
-        function addPage (number, text, style) 
-        {
+    function drawPagination({ page = 1, perPage = 5, pages = 10 }) {
+        function addPage(number, text, style) {
             return `<li class="page-item ${style}">
-                <a class="page-link" href="./list.html?page=${number}&perPage=${perPage}">${text}</a>
-                </li>`
+              <a class="page-link" href="./list.html?page=${number}&perPage=${perPage}">${text}</a>
+            </li>`
         }
-
         const pagination = document.createElement('div');
-        if (pages > 1) 
-        {
+        if (pages > 1) {
             pagination.classList.remove('d-none');
         }
         const ul = document.createElement("ul");
         ul.classList.add('pagination')
-        ul.insertAdjacentHTML('beforeend', addPage(page - 1, 'Previous', (page == 1) ? 'disable' : ''))
-        for (let i = 1; i <= pages; i++) 
-        {
+        ul.insertAdjacentHTML('beforeend', addPage(page - 1, 'Previous', (page == 1) ? 'disabled' : ''))
+        for (let i = 1; i <= pages; i++) {
             ul.insertAdjacentHTML('beforeend', addPage(i, i, (i == page) ? 'active' : ''));
         }
         ul.insertAdjacentHTML('beforeend', addPage(page + 1, 'Next', (page == pages) ? 'disabled' : ''))
@@ -44,7 +33,6 @@ function list (recordPage)
         pagination.append(ul);
         return pagination;
     }
-
     function drawAnimalTable(animals) {
         const eleTable = document.createElement('table');
         eleTable.classList.add('table', 'table-striped');
@@ -94,24 +82,24 @@ function list (recordPage)
     }
     function createContent() {
         animalService.getAnimalPage(recordPage)
-        .then((ret) => {
-            let { records, pagination } = ret;
-            divWaiting.classList.add('d-none');
-            let header = document.createElement('div');
-            header.classList.add('d-flex', 'justify-content-between');
-            let h1 = document.createElement('h1');
-            h1.innerHTML = 'Animal List';
-            header.append(h1);
-            header.append(drawPagination(pagination));
-            container.append(header);
-            container.append(drawAnimalTable(records));
-        })
-        .catch(err => {
-            divWaiting.classList.add('d-none');
-            divMessage.innerHTML = err;
-            divMessage.classList.remove('d-none');
-            divMessage.classList.add('alert-danger');
-        });
+            .then((ret) => {
+                let { records, pagination } = ret;
+                divWaiting.classList.add('d-none');
+                let header = document.createElement('div');
+                header.classList.add('d-flex', 'justify-content-between');
+                let h1 = document.createElement('h1');
+                h1.innerHTML = 'Animal List';
+                header.append(h1);
+                header.append(drawPagination(pagination));
+                container.append(header);
+                container.append(drawAnimalTable(records));
+            })
+            .catch(err => {
+                divWaiting.classList.add('d-none');
+                divMessage.innerHTML = err;
+                divMessage.classList.remove('d-none');
+                divMessage.classList.add('alert-danger');
+            });
         return container;
     }
     return {

@@ -1,0 +1,23 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --config config\\webpack.config.js --mode development",
+    "build": "webpack --config config\\webpack.config.js --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "copy-webpack-plugin": "^13.0.0",
+    "ejs-loader": "^0.5.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.3",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  }
+}

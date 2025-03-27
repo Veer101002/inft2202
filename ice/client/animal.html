@@ -1,6 +1,7 @@
 <!--
 Name: Virendrasinh Chauhan
---> 
+Description: dom demo page
+-->
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -12,12 +13,12 @@ Name: Virendrasinh Chauhan
     <script defer type="module">
       import animalBuilder from  "./app/animals/index.js";
 
-      const params = new URL(document.location).searchParams;
+      let params = new URL(document.location).searchParams;
       const name = params.get("name");
       const animal = await animalBuilder(name);
       
       document.querySelector('main div h1').innerHTML = animal.description;
-      const container = document.querySelector('main .container');
+      let container = document.querySelector('main .container');
       container.append(animal.element);      
     </script>
   </head>

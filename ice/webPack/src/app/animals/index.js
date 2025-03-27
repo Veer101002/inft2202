@@ -1,72 +1,67 @@
-/*
-Name: Virendrasinh Chauhan
-*/
 import animalService from "../animal.service.js";
 
-async function animal(name) {
+function animal(app) {
+    const {name, listBuilder} = app;
+    const container = document.createElement('div');
+    container.classList.add('container');
+    let h1 = document.createElement('h1');
+    h1.innerHTML = 'Add Animal';
+    container.append(h1);
+    container.append(document.createElement('hr'));
+
     const form = document.createElement('form');
-    let description = 'Add Animal';
+
     let animal = null;
     function createContent() {
-        //if(description == 'No service'){
-            //return '';
-        //}
-        const container = document.createElement('div');
-        container.classList.add('mb-2');
+        const mb2 = document.createElement('div');
+        mb2.classList.add('mb-2');
         //create animal form content
         const mb3Name = document.createElement('div');
         mb3Name.classList.add('mb-3');
         let editableInput = `<input type="text" class="form-control" id="name" name="name">`;
-        let readonlyInput = `<input type="text" class="form-control" id="name" name="name" value="${animal!=null?animal.name:""}" readonly>`;
+        let readonlyInput = `<input type="text" class="form-control" id="name" name="name" value="${animal != null ? animal.name : ""}" readonly>`;
         mb3Name.innerHTML = '<label for="name" class="form-label">Animal Name</label>' +
-            (animal!=null ? readonlyInput : editableInput) +
+            (animal != null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';
-        container.append(mb3Name);
+        mb2.append(mb3Name);
 
         const mb3Breed = document.createElement('div');
         mb3Breed.classList.add('mb-3');
-        editableInput = `<input type="text" class="form-control" id="breed" name="breed" value="${animal!=null?animal.breed:""}">`;
-        readonlyInput = `<input type="text" class="form-control" id="breed" name="breed">`;
         mb3Breed.innerHTML = '<label for="breed" class="form-label">Animal Breed</label>' +
-            (animal!=null ? readonlyInput : editableInput) +
+            `<input type="text" class="form-control" id="breed" name="breed" value="${animal != null ? animal.breed : ""}">` +
             '<p class="text-danger d-none"></p>';
-        container.append(mb3Breed);
-        
+        mb2.append(mb3Breed);
+
         const mb3Leg = document.createElement('div');
         mb3Leg.classList.add('mb-3');
-        editableInput = `<input type="text" class="form-control" id="legs" name="legs">`;
-        readonlyInput = `<input type="text" class="form-control" id="legs" name="legs" value="${animal!=null?animal.legs:""}" readonly>`;
         mb3Leg.innerHTML = '<label for="legs" class="form-label">Number of Legs</label>' +
-            (animal!=null ? readonlyInput : editableInput) +
+            '<input type="text" class="form-control" id="legs" name="legs">' +
             '<p class="text-danger d-none"></p>';
-        container.append(mb3Leg);
-        
+        mb2.append(mb3Leg);
+
         const mb3Eye = document.createElement('div');
         mb3Eye.classList.add('mb-3');
-        editableInput = `<input type="text" class="form-control" id="eyes" name="eyes">`;
-        readonlyInput = `<input type="text" class="form-control" id="eyes" name="eyes" value="${animal!=null?animal.eyes:""}" readonly>`;
         mb3Eye.innerHTML = '<label for="eyes" class="form-label">Number of Eyes</label>' +
-            (animal!=null ? readonlyInput : editableInput) +
+            '<input type="text" class="form-control" id="eyes" name="eyes">' +
             '<p class="text-danger d-none"></p>';
-        container.append(mb3Eye);
-        
+        mb2.append(mb3Eye);
+
         const mb3Sound = document.createElement('div');
         mb3Sound.classList.add('mb-3');
-        editableInput = `<input type="text" class="form-control" id="sound" name="sound" value="${animal!=null?animal.sound:""}">`;
-        readonlyInput = `<input type="text" class="form-control" id="sound" name="sound">`;
         mb3Sound.innerHTML = '<label for="sound" class="form-label">Sound this animal makes</label>' +
-            (animal!=null ? readonlyInput : editableInput) +
+            '<input type="text" class="form-control" id="sound" name="sound">' +
             '<p class="text-danger d-none"></p>';
-        container.append(mb3Sound);        
+        mb2.append(mb3Sound);
 
         const submitBtn = document.createElement('div');
         submitBtn.innerHTML = '<button type="submit" class="btn btn-primary">' +
             'Save Animal <i class="fa-solid fa-check"></i>' +
             '</button>';
-        container.append(submitBtn);        
+        mb2.append(submitBtn);
         ///
-        form.append(container);
-        return form;
+        form.append(mb2);
+        container.append(form)
+        return container;
     }
     function validate() {
         let valid = true;
@@ -112,15 +107,13 @@ async function animal(name) {
         const sound = form.sound.value;
         // return if the form is valid or not
         return valid
-    }    
+    }
     // create a handler to deal with the submit event
-    async function submit(action) {
+    function submit(action) {
         // validate the form
         const valid = validate();
         // do stuff if the form is valid
         if (valid) {
-            console.log('were good');
-
             const formData = new FormData(form);
             const animalObject = {};
             formData.forEach((value, key) => {
@@ -133,27 +126,33 @@ async function animal(name) {
             });
 
             const eleNameError = form.name.nextElementSibling
-            try {
-                if(action=="new"){
-                    await animalService.saveAnimal([animalObject]);
-                } else {
-                    await animalService.updateAnimal(animalObject)
-                } 
-                eleNameError.classList.add('d-none');
-                form.reset();
-                window.location = './list.html';
-            } catch (error) {
-                console.log(error);
-                eleNameError.classList.remove('d-none');
-                eleNameError.textContent = "This animal already exists!";
+            if (action == "new") {
+                animalService.saveAnimal([animalObject])
+                    .then(ret=>{
+                        listBuilder(app);
+                    })
+                    .catch(err => {
+                        eleNameError.classList.remove('d-none');
+                        eleNameError.textContent = "Err in adding an animal record!";
+                    });
+            } else {
+                animalService.updateAnimal(animalObject)
+                    .then(ret=>{
+                        listBuilder(app);
+                    })
+                    .catch(err => {
+                        eleNameError.classList.remove('d-none');
+                        eleNameError.textContent = "Err in updating animal record!";
+                    });
             }
-            // do nothing if it's not
+            eleNameError.classList.add('d-none');
         } else {
             console.log('were not good');
         }
     }
-    
+
     if (!name) {
+        createContent();
         // assign a handler to the submit event
         form.addEventListener('submit', function (event) {
             // prevent the default action from happening
@@ -161,26 +160,25 @@ async function animal(name) {
             submit("new");
         });
     }
-    else{
-        description = 'Update Animal';
-        try{
-            let ret = await animalService.findAnimal(name);
-            animal = ret[0];
-            form.addEventListener('submit', function (event) {
-                // prevent the default action from happening
-                event.preventDefault();
-                submit("update");
-            });
-        }
-        catch(err){
-//show err on page
-            description = err;
-        }
+    else {
+        h1.innerText = 'Update Animal';
+        animalService.findAnimal(name)
+            .then(ret => {
+                if (ret.length == 0) {
+                    throw 'No record';
+                }
+                animal = ret[0];
+                createContent();
+                form.addEventListener('submit', function (event) {
+                    // prevent the default action from happening
+                    event.preventDefault();
+                    submit("update");
+                });
+            })
+            .catch(err => { h1.innerHTML = err; });
     }
-
     return {
-        description,
-        element: createContent()
+        element: container
     }
 }
 

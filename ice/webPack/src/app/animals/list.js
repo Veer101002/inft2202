@@ -1,6 +1,8 @@
+
 import animalService from "../animal.service.js";
 
-function list(recordPage) {
+function list(app) {
+    const {recordPage, animalBuilder} = app;
     const container = document.createElement('div');
     container.classList.add('container');
     const divWaiting = document.createElement('div');
@@ -12,11 +14,22 @@ function list(recordPage) {
     divMessage.classList.add('alert', 'text-center', 'd-none');
     container.append(divMessage);
 
+    function onSelectPage(pageInfo){
+        return event => {
+            createContent(pageInfo);
+        }
+    }
     function drawPagination({ page = 1, perPage = 5, pages = 10 }) {
         function addPage(number, text, style) {
-            return `<li class="page-item ${style}">
-              <a class="page-link" href="./list.html?page=${number}&perPage=${perPage}">${text}</a>
-            </li>`
+            const li = document.createElement('li');
+            li.classList.add('page-item', style);
+            const elePageBtn = document.createElement('button');
+            elePageBtn.classList.add('page-link');
+            elePageBtn.innerText = text;
+            let pageInfo = {page:number, perPage};
+            elePageBtn.addEventListener('click',onSelectPage(pageInfo));
+            li.append(elePageBtn);
+            return li;
         }
         const pagination = document.createElement('div');
         if (pages > 1) {
@@ -24,11 +37,11 @@ function list(recordPage) {
         }
         const ul = document.createElement("ul");
         ul.classList.add('pagination')
-        ul.insertAdjacentHTML('beforeend', addPage(page - 1, 'Previous', (page == 1) ? 'disabled' : ''))
+        ul.append(addPage(page - 1, 'Previous', (page == 1) ? 'disabled' : null))
         for (let i = 1; i <= pages; i++) {
-            ul.insertAdjacentHTML('beforeend', addPage(i, i, (i == page) ? 'active' : ''));
+            ul.append(addPage(i, i, (i == page) ? 'active' : null));
         }
-        ul.insertAdjacentHTML('beforeend', addPage(page + 1, 'Next', (page == pages) ? 'disabled' : ''))
+        ul.append(addPage(page + 1, 'Next', (page == pages) ? 'disabled' : null))
 
         pagination.append(ul);
         return pagination;
@@ -66,10 +79,10 @@ function list(recordPage) {
             // add the delete button to the button cell
             eleBtnCell.append(eleBtnDelete);
             // create an edit button
-            const eleBtnEdit = document.createElement('a');
+            const eleBtnEdit = document.createElement('button');
             eleBtnEdit.classList.add('btn', 'btn-primary', 'mx-1');
             eleBtnEdit.innerHTML = `<i class="fa fa-user"></i>`;
-            eleBtnEdit.href = `./animal.html?name=${animal.name}`
+            eleBtnEdit.addEventListener('click', onEditButtonClick(animal));
             // add the edit button to the button cell
             eleBtnCell.append(eleBtnEdit);
         }
@@ -80,9 +93,17 @@ function list(recordPage) {
             animalService.deleteAnimal(animal.name).then(() => { window.location.reload(); });
         }
     }
-    function createContent() {
-        animalService.getAnimalPage(recordPage)
+    function onEditButtonClick(animal) {
+        return event => {
+            app.name = animal.name;
+            animalBuilder(app);
+        }
+    }    
+    function createContent(pageInfo) {
+        divWaiting.classList.remove('d-none');
+        animalService.getAnimalPage(pageInfo)
             .then((ret) => {
+                container.textContent = '';
                 let { records, pagination } = ret;
                 divWaiting.classList.add('d-none');
                 let header = document.createElement('div');
@@ -103,7 +124,7 @@ function list(recordPage) {
         return container;
     }
     return {
-        element: createContent()
+        element: createContent(recordPage)
     }
 }
 
