@@ -74,7 +74,24 @@ async function fetchMovies(genre = null, rating = null) {
 function insertMoviesIntoTable(tbody, movies) {
     tbody.innerHTML = ""; // Clear previous results
 
-    movies.forEach(movie => {
+    // Create an array to hold movie data along with the color class
+    let movieData = movies.map(movie => {
+        let colorClass = '';
+        const rating = parseFloat(movie.rating);
+
+        if (rating <= 2) colorClass = "table-danger"; // Red
+        else if (rating > 2 && rating <= 5) colorClass = "table-warning"; // Orange
+        else if (rating > 5 && rating <= 8) colorClass = "table-info"; // Blue
+        else if (rating > 8) colorClass = "table-success"; // Green
+
+        return { movie, colorClass };
+    });
+
+    // Sort movies by color class or any other criteria
+    movieData.sort((a, b) => a.colorClass.localeCompare(b.colorClass));
+
+    // Insert sorted movies into the table
+    movieData.forEach(({ movie, colorClass }) => {
         const row = tbody.insertRow();
 
         // Insert cells for movie attributes
@@ -88,21 +105,21 @@ function insertMoviesIntoTable(tbody, movies) {
         genreCell.textContent = movie.genre;
 
         // Convert release_date (Unix timestamp) to readable date
-        yearCell.textContent = new Date(movie.release_date * 1000).toLocaleDateString();
+        const releaseDate = new Date(movie.release_date * 1000);
+        yearCell.textContent = releaseDate.toLocaleString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
 
         directorCell.textContent = movie.director;
         ratingCell.textContent = movie.rating;
 
         // Apply row color based on rating
-        const rating = parseFloat(movie.rating);
-
-        // if a movie is rated two or below, make this row red
-        if (movie.rating <= 2) row.classList.add("table-danger");
-        // if this movie is rated higher than two but less than or equal to five, make this row orange
-        else if (movie.rating > 2 && movie.rating <= 5) row.classList.add("table-warning");
-        // if this movie is rated higher than five but less than or equal to 8, make this row blue
-        else if (movie.rating > 5 && movie.rating <= 8) row.classList.add("table-info");
-        // if this movie is rated higher than eight, make this row green
-        else if (movie.rating > 8) row.classList.add("table-success");
+        row.classList.add(colorClass);
     });
 }
